@@ -4,7 +4,7 @@ const increment = document.querySelector('#increment');
 const decrement = document.querySelector('#decrement');
 const reset = document.querySelector('#reset');
 
-if (localStorage.counter === 'undefined') {
+if (!localStorage.counter) {
     counter.value = 0;
 } else {
     counter.value = localStorage.counter;
