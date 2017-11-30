@@ -1,5 +1,7 @@
 'use strict';
 
+// localStorage.clear()
+
 const colors = document.querySelector('#colorSwatch');
 const sizes = document.querySelector('#sizeSwatch');
 const cart = document.querySelector('#quick-cart');
@@ -115,11 +117,16 @@ function handleColors(data) {
     }
     colors.innerHTML = data.reduce(makeHTML, colors.innerHTML);
     const availableColors = [...colors.querySelectorAll('.swatch-element.available')];
+
     availableColors.find(color => {
         if (color.classList.contains(localStorage.color)) {
             color.querySelector('input').checked = true;
         }
     })
+
+    if (!localStorage.color) {
+        availableColors[0].querySelector('input').checked = true;
+    }
 }
 
 function handleSizes(data) {
@@ -150,6 +157,10 @@ function handleSizes(data) {
             size.querySelector('input').checked = true;
         }
     })
+
+    if (!localStorage.size) {
+        availableSizes[0].querySelector('input').checked = true;
+    }
 }
 
 colors.addEventListener('change', (e) => {
